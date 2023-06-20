@@ -20,13 +20,13 @@ def continueprcs():
         print(Fore.RED + "Something Has Gone Really Wrong! Check Details Please!\nClosing Program...")
         time.sleep(2)
         sys.exit(2)
-    print(Fore.GREEN + "Connected To Serial Port!")
+    print(Fore.GREEN + "Connected To Serial Port!" + Style.RESET_ALL)
 
     tosendorrecv = input("Do You Want To Send or Receive Data? (s/r): ")
     if str(tosendorrecv.lower()) == "s":
         datatobesent = input("What Do You Want To Send?: ")
         if len(str(datatobesent)) == 0:
-            print("Data Can't Be Empty!")
+            print(Fore.RED + "Data Can't Be Empty!" + Style.RESET_ALL)
 
     elif str(tosendorrecv.lower()) == "":
         print("Received Data: " + str(ser.readline()))
@@ -34,7 +34,7 @@ def continueprcs():
 
 # Check if arguments are missing
 if len(sys.argv) != 3:
-    print("Usage: python script.py <COM Port> <Baud Rate>")
+    print(Fore.RED + "Usage: python script.py <COM Port> <Baud Rate>" + Style.RESET_ALL)
     sys.exit(1)
 
 # Get the arguments
@@ -43,8 +43,7 @@ baudrate = sys.argv[2]
 
 # Check if any argument is empty
 if not comport or not baudrate:
-    print("Error: Both arguments are required.")
-    print("Usage: python script.py <COM Port> <Baud Rate>")
+    print(Fore.RED + "Error: Both arguments are required.\nUsage: python script.py <COM Port> <Baud Rate>")
     sys.exit(1)
 
 # Use the arguments
