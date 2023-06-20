@@ -1,3 +1,10 @@
+###############################
+#                             #
+#                             #
+# SeriSR - A CLI Project      #
+#                             #
+#            By - OpenPrattay #
+###############################
 import time
 import serial
 import sys
