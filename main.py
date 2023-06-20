@@ -10,20 +10,19 @@ def continueprcs():
     try:
         ser = serial.Serial(comport, baudrate)
     except:
-        print("Something Has Gone Really Wrong! Check Details Please!\nClosing Program...")
+        print(Fore.RED + "Something Has Gone Really Wrong! Check Details Please!\nClosing Program...")
         time.sleep(2)
         sys.exit(2)
-    print("Connected To Serial Port!")
-    while True:
-        rdata = ser.readline()
-        tosendorrecv = input("Do You Want To Send or Receive Data? (s/r): ")
-        if str(tosendorrecv.lower()) == "s":
-            datatobesent = input("What Do You Want To Send?: ")
-            if len(str(datatobesent)) == 0:
-                print("Data Can't Be Empty!")
+    print(Fore.GREEN + "Connected To Serial Port!")
 
-        elif str(tosendorrecv.lower()) == "":
-            print("Received Data: " + str(rdata))
+    tosendorrecv = input("Do You Want To Send or Receive Data? (s/r): ")
+    if str(tosendorrecv.lower()) == "s":
+        datatobesent = input("What Do You Want To Send?: ")
+        if len(str(datatobesent)) == 0:
+            print("Data Can't Be Empty!")
+
+    elif str(tosendorrecv.lower()) == "":
+        print("Received Data: " + str(ser.readline()))
 
 
 # Check if arguments are missing
