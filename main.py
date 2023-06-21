@@ -1,10 +1,10 @@
-###############################
-#                             #
-#                             #
-# SeriSR - A CLI Project      #
-#                             #
-#            By - OpenPrattay #
-###############################
+###########################################
+#                                         #
+#                                         #
+# SeriSR - A CLI Project                  #
+#                                         #
+#            By - OpenPrattay             #
+###########################################
 import time
 import serial
 import sys
@@ -13,23 +13,22 @@ from colorama import Fore, Back, Style
 
 
 def continueprcs():
-    print("Connecting To Serial Port...")
+    print(Fore.BLUE + "Connecting To Serial Port...")
     try:
         ser = serial.Serial(comport, baudrate)
-    except:
+    except KeyboardInterrupt:
         print(Fore.RED + "Something Has Gone Really Wrong! Check Details Please!\nClosing Program...")
-        time.sleep(2)
         sys.exit(2)
     print(Fore.GREEN + "Connected To Serial Port!" + Style.RESET_ALL)
 
-    tosendorrecv = input("Do You Want To Send or Receive Data? (s/r): ")
+    tosendorrecv = input(Fore.BLUE + "Do You Want To Send or Receive Data? (s/r): ")
     if str(tosendorrecv.lower()) == "s":
-        datatobesent = input("What Do You Want To Send?: ")
+        datatobesent = input(Fore.BLUE + "What Do You Want To Send?: ")
         if len(str(datatobesent)) == 0:
             print(Fore.RED + "Data Can't Be Empty!" + Style.RESET_ALL)
-
+            exit(1)
     elif str(tosendorrecv.lower()) == "":
-        print("Received Data: " + str(ser.readline()))
+        print(Fore.GREEN + "Received Data: " + str(ser.readline()))
 
 
 # Check if arguments are missing
@@ -47,11 +46,12 @@ if not comport or not baudrate:
     sys.exit(1)
 
 # Use the arguments
-print("COM PORT Given: " + comport)
-print("BAUD RATE Given: " + baudrate)
+print(Fore.GREEN + "COM PORT Given: " + comport)
+print(Fore.GREEN + "BAUD RATE Given: " + baudrate)
 
-ynconfirm = input("Is This Info Correct? (y/n): ")
+ynconfirm = input(Fore.BLUE + "Is This Info Correct? (y/n): ")
 if str(ynconfirm.lower()) == "y":
     continueprcs()
 elif str(ynconfirm.lower()) == "n":
+    print(Fore.RED + "Closing...")
     sys.exit(1)
