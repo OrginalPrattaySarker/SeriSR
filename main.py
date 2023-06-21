@@ -41,19 +41,21 @@ baudrate = sys.argv[2]
 
 # Check if any argument is empty
 if not comport or not baudrate:
-    print(Fore.RED + "Error: Both arguments are required.\nUsage: python script.py <COM Port> <Baud Rate>" + Style.RESET_ALL)
+    print(Fore.RED + "Error: Both arguments are required.\nUsage: python script.py <COM Port> <Baud Rate>"
+          + Style.RESET_ALL)
     sys.exit(1)
 
 # Use the arguments
 print(Fore.GREEN + "COM PORT Given: " + comport)
 print(Fore.GREEN + "BAUD RATE Given: " + baudrate)
-print(Fore.GREEN + "Trying To To Serial Port...")
+print(Fore.GREEN + "Trying To Connect To Serial Port...")
 try:
     ser = serial.Serial(comport, baudrate)
 except KeyboardInterrupt:
     sys.exit(0)
 except serial.SerialException:
     print(Fore.RED + "Details Are Wrong, Please Check!" + Style.RESET_ALL)
+    sys.exit()
 except:
     print(Fore.RED + "Something Has Gone Really Wrong!\nClosing Program..." + Style.RESET_ALL)
     sys.exit(2)
